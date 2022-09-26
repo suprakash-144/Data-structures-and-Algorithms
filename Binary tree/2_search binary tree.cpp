@@ -27,7 +27,7 @@ void insert(node *root, int data)
         root = newnode(data);
         return;
     }
-    else if (root->data > data)
+    else if (root->data < data)
     {
         insert(root->left, data);
     }
@@ -41,7 +41,7 @@ void search(node *root, int key)
     if (root == NULL)
     {
         cout << "Not found!!";
-        return
+        return;
     }
     else if (root->data = key)
     {

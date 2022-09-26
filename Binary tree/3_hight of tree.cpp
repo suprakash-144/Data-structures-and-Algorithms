@@ -36,6 +36,16 @@ void insert(node *root, int data)
         insert(root->right, data);
     }
 }
+int hegiht(node *root)
+{
+    if (root == NULL)
+    {
+        return -1;
+        // if we conside the highet as number of nodes then return 0
+        // if we consider height as number of edges from the root then return -1
+    }
+    return max(hegiht(root->left), hegiht(root->right)) + 1;
+}
 int main()
 {
     int size, data;
