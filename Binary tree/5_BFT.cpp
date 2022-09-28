@@ -1,33 +1,35 @@
 #include <stdlib.h>
 #include <iostream>
+#include <queue>
 
 using namespace std;
 class node
 {
-private:
-    /* data */
 public:
     int data;
-    node *left;
-    node *right;
+    node *left, *right;
 };
-node *root = NULL;
-node *newnode(int data)
-{
-    node *newnode = new node();
-    newnode->data = data;
-    newnode->left = NULL;
-    newnode->right = NULL;
-    return newnode;
-}
+
+// node *newnode(int data)
+// {
+//     node *newnode = new node();
+//     newnode->data = data;
+//     newnode->left = NULL;
+//     newnode->right = NULL;
+//     return newnode;
+// }
 void insert(node *root, int data)
 {
     if (root == NULL)
     {
-        root = newnode(data);
+        node *newnode = new node();
+        newnode->data = data;
+        newnode->left = NULL;
+        newnode->right = NULL;
+        root = newnode;
         return;
     }
-    else if (root->data < data)
+    else if (root->data > data)
     {
         insert(root->left, data);
     }
@@ -36,8 +38,28 @@ void insert(node *root, int data)
         insert(root->right, data);
     }
 }
+void levelorder(node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    queue<node *> q;
+    q.push(root);
+    while (!q.empty())
+    {
+        node *current = q.front();
+        cout << current->data << "\t";
+        if (current->left != NULL)
+            q.push(current->left);
+        if (current->right != NULL)
+            q.push(current->right);
+        q.pop(); // pops first element from the quque
+    }
+}
 int main()
 {
+    node *root = NULL;
     int size, data;
     cout << "Enter the number of eleemts to insert: ";
     cin >> size;
@@ -47,6 +69,6 @@ int main()
         cin >> data;
         insert(root, data);
     }
-
+    levelorder(root);
     return 0;
 }
