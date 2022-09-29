@@ -11,7 +11,7 @@ public:
     node *left;
     node *right;
 };
-
+node *root = NULL;
 node *newnode(int data)
 {
     node *newnode = new node();
@@ -36,14 +36,6 @@ void insert(node *root, int data)
         insert(root->right, data);
     }
 }
-void preorder(node *root)
-{
-    if (root == NULL)
-        return;
-    cout << root->data << " ";
-    preorder(root->left);
-    preorder(root->right);
-}
 void inorder(node *root)
 {
     if (root == NULL)
@@ -54,17 +46,8 @@ void inorder(node *root)
     cout << root->data << " ";
     inorder(root->right);
 }
-void postorder(node *root)
-{
-    if (root == NULL)
-        return;
-    postorder(root->left);
-    postorder(root->right);
-    cout << root->data << " ";
-}
 int main()
 {
-    node *root = NULL;
     int size, data;
     cout << "Enter the number of eleemts to insert: ";
     cin >> size;

@@ -4,8 +4,6 @@
 using namespace std;
 class node
 {
-private:
-    /* data */
 public:
     int data;
     node *left;
@@ -44,28 +42,10 @@ void preorder(node *root)
     preorder(root->left);
     preorder(root->right);
 }
-void inorder(node *root)
-{
-    if (root == NULL)
-    {
-        return;
-    }
-    inorder(root->left);
-    cout << root->data << " ";
-    inorder(root->right);
-}
-void postorder(node *root)
-{
-    if (root == NULL)
-        return;
-    postorder(root->left);
-    postorder(root->right);
-    cout << root->data << " ";
-}
 int main()
 {
-    node *root = NULL;
     int size, data;
+    node *root = NULL;
     cout << "Enter the number of eleemts to insert: ";
     cin >> size;
     cout << "Enter the elements of the tree: ";
@@ -74,6 +54,7 @@ int main()
         cin >> data;
         insert(root, data);
     }
+    preorder(root);
 
     return 0;
 }
