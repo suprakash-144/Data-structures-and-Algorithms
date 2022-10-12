@@ -1,6 +1,5 @@
-#include <stdlib.h>
+#include <bits/stdc++.h>
 #include <iostream>
-#include <queue>
 
 using namespace std;
 class node
@@ -10,23 +9,19 @@ public:
     node *left, *right;
 };
 
-// node *newnode(int data)
-// {
-//     node *newnode = new node();
-//     newnode->data = data;
-//     newnode->left = NULL;
-//     newnode->right = NULL;
-//     return newnode;
-// }
-void insert(node *root, int data)
+node *newnode(int data)
+{
+    node *newnode = new node();
+    newnode->data = data;
+    newnode->left = NULL;
+    newnode->right = NULL;
+    return newnode;
+}
+void insert(node *&root, int data)
 {
     if (root == NULL)
     {
-        node *newnode = new node();
-        newnode->data = data;
-        newnode->left = NULL;
-        newnode->right = NULL;
-        root = newnode;
+        root = newnode(data);
         return;
     }
     else if (root->data > data)

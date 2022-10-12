@@ -1,6 +1,6 @@
-#include <stdlib.h>
-#include <iostream>
 
+#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 class node
 {
@@ -20,7 +20,7 @@ node *newnode(int data)
     newnode->right = NULL;
     return newnode;
 }
-void insert(node *root, int data)
+void insert(node *&root, int data)
 {
     if (root == NULL)
     {

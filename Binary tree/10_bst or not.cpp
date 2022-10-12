@@ -1,11 +1,11 @@
+
 #include <bits/stdc++.h>
 #include <iostream>
 
 using namespace std;
 class node
 {
-private:
-    /* data */
+
 public:
     int data;
     node *left;
@@ -27,7 +27,7 @@ void insert(node *&root, int data)
         root = newnode(data);
         return;
     }
-    else if (root->data < data)
+    else if (root->data > data)
     {
         insert(root->left, data);
     }
@@ -36,19 +36,34 @@ void insert(node *&root, int data)
         insert(root->right, data);
     }
 }
-int hegiht(node *root)
+void inorder(node *root, vector<int> &ans)
 {
     if (root == NULL)
     {
-        return 0;
-        // if we conside the highet as number of nodes then return 0
-        // if we consider height as number of edges from the root then return -1
+        return;
     }
-    return max(hegiht(root->left), hegiht(root->right)) + 1;
+    inorder(root->left, ans);
+    ans.push_back(root->data);
+    inorder(root->right, ans);
+}
+void bstornot(node *root)
+{
+    vector<int> ans;
+    inorder(root, ans);
+    for (int i = 0; i < ans.size() - 1; i++)
+    {
+        if (ans[i] > ans[i + 1])
+        {
+            cout << "Not a Binary search tree!!";
+            return;
+        }
+    }
+    cout << "It is a Binary search tree!!";
 }
 int main()
 {
-    node *root = NULL;
+    node *root = new node();
+    root = NULL;
     int size, data;
     cout << "Enter the number of eleemts to insert: ";
     cin >> size;
@@ -58,6 +73,7 @@ int main()
         cin >> data;
         insert(root, data);
     }
+    bstornot(root);
 
     return 0;
 }

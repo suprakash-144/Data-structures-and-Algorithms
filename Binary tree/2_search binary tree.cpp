@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <bits/stdc++.h>
 #include <iostream>
 
 using namespace std;
@@ -11,7 +11,7 @@ public:
     node *left;
     node *right;
 };
-node *root = NULL;
+
 node *newnode(int data)
 {
     node *newnode = new node();
@@ -20,7 +20,7 @@ node *newnode(int data)
     newnode->right = NULL;
     return newnode;
 }
-void insert(node *root, int data)
+void insert(node *&root, int data)
 {
     if (root == NULL)
     {
@@ -43,7 +43,7 @@ void search(node *root, int key)
         cout << "Not found!!";
         return;
     }
-    else if (root->data = key)
+    else if (root->data == key)
     {
         cout << "Element found in the tree!!";
     }
@@ -59,6 +59,7 @@ void search(node *root, int key)
 }
 int main()
 {
+    node *root = NULL;
     int size, data, key;
     cout << "Enter the number of eleemts to insert: ";
     cin >> size;

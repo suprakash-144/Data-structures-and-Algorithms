@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <iostream>
-
+#include <bits/stdc++.h>
 using namespace std;
 class node
 {
@@ -11,7 +11,7 @@ public:
     node *left;
     node *right;
 };
-node *root = NULL;
+
 node *newnode(int data)
 {
     node *newnode = new node();
@@ -20,7 +20,7 @@ node *newnode(int data)
     newnode->right = NULL;
     return newnode;
 }
-void insert(node *root, int data)
+void insert(node *&root, int data)
 {
     if (root == NULL)
     {
@@ -48,6 +48,8 @@ void inorder(node *root)
 }
 int main()
 {
+    node *root = new node();
+    root = NULL;
     int size, data;
     cout << "Enter the number of eleemts to insert: ";
     cin >> size;
@@ -57,6 +59,7 @@ int main()
         cin >> data;
         insert(root, data);
     }
+    inorder(root);
 
     return 0;
 }
